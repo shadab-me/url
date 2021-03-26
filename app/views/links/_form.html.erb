@@ -1,0 +1,32 @@
+<%= form_with(model: link) do |form| %>
+  <% if link.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(link.errors.count, "error") %> prohibited this link from being saved:</h2>
+
+      <ul>
+        <% link.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :longUrl %>
+    <%= form.text_field :longUrl %>
+  </div>
+
+  <div class="field">
+    <%= form.label :shorUrl %>
+    <%= form.text_field :shorUrl %>
+  </div>
+
+  <div class="field">
+    <%= form.label :shotId %>
+    <%= form.text_field :shotId %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -17,7 +17,7 @@ class UrlsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create url" do
     assert_difference('Url.count') do
-      post urls_url, params: { url: { long-url: @url.long-url, short-id: @url.short-id, short-url: @url.short-url } }
+      post urls_url, params: { url: { longUrl: @url.longUrl, numberOfClick: @url.numberOfClick, pin: @url.pin, shortId: @url.shortId, shortUrl: @url.shortUrl } }
     end
 
     assert_redirected_to url_url(Url.last)
@@ -34,7 +34,7 @@ class UrlsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update url" do
-    patch url_url(@url), params: { url: { long-url: @url.long-url, short-id: @url.short-id, short-url: @url.short-url } }
+    patch url_url(@url), params: { url: { longUrl: @url.longUrl, numberOfClick: @url.numberOfClick, pin: @url.pin, shortId: @url.shortId, shortUrl: @url.shortUrl } }
     assert_redirected_to url_url(@url)
   end
 

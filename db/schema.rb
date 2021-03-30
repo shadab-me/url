@@ -10,20 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_26_102007) do
-
-  create_table "links", force: :cascade do |t|
-    t.string "longUrl"
-    t.string "shorUrl"
-    t.string "shotId"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
+ActiveRecord::Schema.define(version: 2021_03_26_155750) do
 
   create_table "urls", force: :cascade do |t|
     t.string "longUrl"
     t.string "shortUrl"
     t.string "shortId"
+    t.decimal "numberOfClick"
+    t.boolean "pin"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

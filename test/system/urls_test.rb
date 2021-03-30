@@ -14,9 +14,11 @@ class UrlsTest < ApplicationSystemTestCase
     visit urls_url
     click_on "New Url"
 
-    fill_in "Long-url", with: @url.long-url
-    fill_in "Short-id", with: @url.short-id
-    fill_in "Short-url", with: @url.short-url
+    fill_in "Longurl", with: @url.longUrl
+    fill_in "Numberofclick", with: @url.numberOfClick
+    check "Pin" if @url.pin
+    fill_in "Shortid", with: @url.shortId
+    fill_in "Shorturl", with: @url.shortUrl
     click_on "Create Url"
 
     assert_text "Url was successfully created"
@@ -27,9 +29,11 @@ class UrlsTest < ApplicationSystemTestCase
     visit urls_url
     click_on "Edit", match: :first
 
-    fill_in "Long-url", with: @url.long-url
-    fill_in "Short-id", with: @url.short-id
-    fill_in "Short-url", with: @url.short-url
+    fill_in "Longurl", with: @url.longUrl
+    fill_in "Numberofclick", with: @url.numberOfClick
+    check "Pin" if @url.pin
+    fill_in "Shortid", with: @url.shortId
+    fill_in "Shorturl", with: @url.shortUrl
     click_on "Update Url"
 
     assert_text "Url was successfully updated"

@@ -7,7 +7,7 @@ function UserInput() {
   const [url, setUrl] = useState("");
   const [link, setLink] = useState("");
   const [copyLink, setCopyLink] = useState(false);
-  
+
   const sendRequest = (longUrl) => {
     let shortId = shortid.generate();
     let shortUrl = `http://localhost:3000/${shortId}`;
@@ -18,8 +18,6 @@ function UserInput() {
         longUrl,
       },
     };
-    console.log(urlData);
-    // urlData = JSON.stringify(urlData);
     axios.post("/urls.json", urlData).then((res) => setLink(res.data));
   };
   const validateUrl = (value) => {
@@ -36,10 +34,10 @@ function UserInput() {
       alert("Not Valid");
     }
   };
-  function urlUpdate(event) {
+  const urlUpdate = (event) => {
     event.preventDefault();
     setUrl(event.target.value);
-  }
+  };
   const copyHandler = () => {
     navigator.clipboard.writeText(link.shortUrl);
     setCopyLink(true);

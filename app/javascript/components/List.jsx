@@ -4,7 +4,8 @@ import React, { useEffect, useState } from "react";
 import shortid from "shortid";
 function List() {
   const [allLinks, setLinks] = useState([]);
-  const [pin, setPin] = useState(true);
+  const [pin, setPin] = useState(false);
+  const [count, setCount] = useState(false);
 
   useEffect(() => {
     axios.get("/urls.json").then((data) => {
@@ -14,16 +15,17 @@ function List() {
         })
       );
     });
-  }, [pin]);
+  }, [count, pin]);
 
-  function pinHandler(link) {
+  const pinHandler = (link) => {
     axios
       .patch(`/urls/${link.id}.json`, { pin: !link.pin })
       .then((res) => setPin(res));
-  }
-  function counter(link) {
-     allLinks.indexOf(link)
-  }
+  };
+
+  const counter = (link) => {
+    axios.get(`/urls/${link.id}.json`).then((res) => setCount(res));
+  };
 
   return (
     <>
@@ -50,7 +52,7 @@ function List() {
                 <a
                   className="underline w-2/5 text-gray-800 hover:text-gray-700 break-all"
                   href={link.longUrl}
-                  target="_blank"
+                  target="blank"
                 >
                   {link.longUrl}
                 </a>
@@ -58,7 +60,7 @@ function List() {
                   className="underline w-2/5 ml-5 text-gray-800 hover:text-gray-700 break-all"
                   href={link.shortUrl}
                   target="_blank"
-                  onClick={() => counter(link)}
+                  onClick={() => setTimeout(counter(link), 3000)}
                 >
                   {link.shortUrl}
                 </a>

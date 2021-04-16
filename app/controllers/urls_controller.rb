@@ -1,76 +1,64 @@
 class UrlsController < ApplicationController
   before_action :set_url, only: %i[ show edit update destroy ]
-   # GET /urls or /urls.json
-  def index
+
+   def index
     @urls = Url.all
+    if @urls
+    render  status: :ok,  json: {urls: @urls}  
+    else
+       render json: @urls.errors, status: :unprocessable_entity 
+     end
   end
 
   def redirect
-    @link =  Url.find_by(shortId: params[:id])
-       @link.increment!(:numberOfClick)
-      puts @link["numberOfClick"]
+     @link =  Url.find_by(shortId: params[:id])
+     if(@link)
+      @link.increment!(:numberOfClick)
       redirect_to @link[:longUrl]
+  else
+      render status: :ok, json: {error: "link is not available!"}
+  end
    end
 
-  # GET /urls/1 or /urls/1.json
-  def show
-  end
+   def show
+   end
 
-  # GET /urls/new
-  def new
+   def new
     @url = Url.new
   end
 
-  # GET /urls/1/edit
   def edit
   end
 
-  # POST /urls or /urls.json
-  def create
+   def create
      @url = Url.new(url_params)
-    puts url_params
-    respond_to do |format|
+     respond_to do |format|
       if @url.save
-        # format.html { redirect_to @url, notice: "Url was successfully created." }
-        format.json { render :show, status: :created, location: @url }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @url.errors, status: :unprocessable_entity }
+         format.json { render :show, status: :created, location: @url, notice: "Created Sucessfully." }
+       else
+         format.json { render json: @url.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /urls/1 or /urls/1.json
-  def update
+   def update
     respond_to do |format|
       if @url.update(url_params)
-        format.html { redirect_to @url, notice: "Url was successfully updated." }
-        format.json { render :show, status: :ok, location: @url }
+         format.json { render :show, status: :ok, location: @url, notice: "Pined!" }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @url.errors, status: :unprocessable_entity }
+         format.json { render json: @url.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /urls/1 or /urls/1.json
-  def destroy
-    @url.destroy
-    respond_to do |format|
-      format.html { redirect_to urls_url, notice: "Url was successfully destroyed." }
-      format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_url
+     
+  def set_url
       @url = Url.find(params[:id])
     puts @url
     end
 
-    # Only allow a list of trusted parameters through.
-    def url_params
+     def url_params
        params.require(:url).permit(:longUrl, :shortUrl, :shortId, :numberOfClick, :pin)
     end
 end

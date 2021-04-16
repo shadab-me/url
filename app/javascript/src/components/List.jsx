@@ -1,20 +1,17 @@
 import axios from "axios";
 import { number } from "prop-types";
 import React, { useEffect, useState } from "react";
+import { urlList } from "apis/ulr";
 import shortid from "shortid";
+
 function List() {
   const [allLinks, setLinks] = useState([]);
   const [pin, setPin] = useState(false);
   const [count, setCount] = useState(false);
 
-  useEffect(() => {
-    axios.get("/urls.json").then((data) => {
-      let linksWithOutPin = setLinks(
-        data.data.sort((a, b) => {
-          return a.pin === b.pin ? 0 : a.pin ? -1 : 1;
-        })
-      );
-    });
+  useEffect(async () => {
+    const { data } = await urlList();
+    setLinks(data.urls);
   }, [count, pin]);
 
   const pinHandler = (link) => {
@@ -22,13 +19,13 @@ function List() {
       .patch(`/urls/${link.id}.json`, { pin: !link.pin })
       .then((res) => setPin(res));
   };
-
-  const counter = (link) => {
-    axios.get(`/urls/${link.id}.json`).then((res) => setCount(res));
-  };
+  const clickHandler = (id) => {};
 
   return (
     <>
+      <h1 className="text-5xl text-blue text-center mt-10 mb-3">
+        All Urls Report
+      </h1>
       <section className="w-1/2 mt-5 my-0 mx-auto mb-6 rounded shadow-lg">
         <ul>
           <li className="bg-blue-700 text-white flex justify-around items-center p-3">
@@ -60,7 +57,7 @@ function List() {
                   className="underline w-2/5 ml-5 text-gray-800 hover:text-gray-700 break-all"
                   href={link.shortUrl}
                   target="_blank"
-                  onClick={() => setTimeout(counter(link), 3000)}
+                  onClick={() => clickHandler()}
                 >
                   {link.shortUrl}
                 </a>

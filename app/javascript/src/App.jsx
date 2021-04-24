@@ -1,27 +1,23 @@
 import React, { useEffect } from "react";
-import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
-import UserInput from "components/UserInput";
-import Header from "components/Header";
-import List from "components/List";
-import Roatr from "components/Common/Roastr";
-import "react-toastify/dist/ReactToastify.css";
+import UserInput from "./components/UserInput";
+import Header from "./components/Header";
+import List from "./components/List";
 import { initializeLogger } from "common/logger";
 
-const App = () => {
+function App() {
   useEffect(() => {
+    /*eslint no-undef: "off"*/
     initializeLogger();
-  });
+    logger.info("Log from js-logger");
+  }, []);
+
   return (
     <>
-      <Router>
-        <Header />
-        <Switch>
-          <Route exact path="/" component={UserInput} />
-          <Route exact path="/report" component={List} />
-        </Switch>
-      </Router>
+      <Header />
+      <UserInput />
+      <List />
     </>
   );
-};
+}
 
 export default App;

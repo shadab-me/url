@@ -1,7 +1,7 @@
 import axios from "axios";
 import { number } from "prop-types";
 import React, { useEffect, useState } from "react";
-import { urlList } from "apis/ulr";
+import { urlList } from "../apis/ulr";
 import shortid from "shortid";
 
 function List() {
@@ -23,9 +23,7 @@ function List() {
 
   return (
     <>
-      <h1 className="text-5xl text-blue text-center mt-10 mb-3">
-        All Urls Report
-      </h1>
+      <h1 className="text-5xl text-blue text-center mt-10 mb-3">All Urls</h1>
       <section className="w-1/2 mt-5 my-0 mx-auto mb-6 rounded shadow-lg">
         <ul>
           <li className="bg-blue-700 text-white flex justify-around items-center p-3">

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import UserInput from "./components/UserInput";
 import Header from "./components/Header";
 import List from "./components/List";
-import { initializeLogger } from "common/logger";
+import { initializeLogger } from "./common/logger";
 
 function App() {
   useEffect(() => {

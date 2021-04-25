@@ -5,13 +5,10 @@ import React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import App from "src/App";
-function Index() {
-  return <App />;
-}
 
 document.addEventListener("DOMContentLoaded", () => {
   ReactDOM.render(
-    <Index />,
+    <App />,
     document.body.appendChild(document.createElement("div"))
   );
 });

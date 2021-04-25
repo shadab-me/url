@@ -5,12 +5,6 @@ import List from "./components/List";
 import { initializeLogger } from "./common/logger";
 
 function App() {
-  useEffect(() => {
-    /*eslint no-undef: "off"*/
-    initializeLogger();
-    logger.info("Log from js-logger");
-  }, []);
-
   return (
     <>
       <Header />

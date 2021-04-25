@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const list = () => axios.get("/urls");
+const list = () => axios.get("/urls.json");
 const urlList = () => {
   return list();
 };

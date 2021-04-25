@@ -1,11 +1,15 @@
+require 'csv'    
 class UrlsController < ApplicationController
   before_action :set_url, only: %i[ show edit update destroy ]
 
    def index
     @urls = Url.all
     if @urls
-    render  status: :ok,  json: {urls: @urls}  
-    else
+     respond_to do |format|
+      format.json {render status: :ok, urls: @urls}
+      format.csv {send_data @urls.to_csv, filename: "urls-#{Date.today}.csv" }
+    end   
+   else
        render json: @urls.errors, status: :unprocessable_entity 
      end
   end
@@ -18,16 +22,12 @@ class UrlsController < ApplicationController
   else
       render status: :ok, json: {error: "link is not available!"}
   end
-   end
+  end
 
-   def show
-   end
+   
 
    def new
     @url = Url.new
-  end
-
-  def edit
   end
 
    def create
@@ -52,13 +52,14 @@ class UrlsController < ApplicationController
   end
 
   private
-     
+ 
   def set_url
       @url = Url.find(params[:id])
     puts @url
     end
 
-     def url_params
-       params.require(:url).permit(:longUrl, :shortUrl, :shortId, :numberOfClick, :pin)
+  def url_params
+      params.require(:url).permit(:longUrl, :shortUrl, :shortId, :numberOfClick, :pin)
     end
+    
 end

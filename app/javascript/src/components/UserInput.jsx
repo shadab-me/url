@@ -10,7 +10,7 @@ function UserInput() {
 
   const sendRequest = (longUrl) => {
     let shortId = shortid.generate();
-    let shortUrl = `http://localhost:3000/${shortId}`;
+    let shortUrl = window.location.href + shortId;
     let urlData = {
       url: {
         shortId,

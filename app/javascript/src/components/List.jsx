@@ -1,7 +1,7 @@
 import axios from "axios";
 import { number } from "prop-types";
 import React, { useEffect, useState } from "react";
-import { urlList } from "../apis/ulr";
+import { urlList } from "../apis/url";
 import shortid from "shortid";
 
 function List() {
@@ -11,7 +11,7 @@ function List() {
 
   useEffect(async () => {
     const { data } = await urlList();
-    setLinks(data.urls);
+    setLinks(data);
   }, [count, pin]);
 
   const pinHandler = (link) => {

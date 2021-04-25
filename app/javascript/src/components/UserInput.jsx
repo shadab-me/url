@@ -14,9 +14,9 @@ function UserInput() {
     let shortUrl = window.location.href + shortId;
     let urlData = {
       url: {
-        shortId,
-        shortUrl,
-        longUrl,
+        short_id: shortId,
+        short_url: shortUrl,
+        long_url: longUrl,
       },
     };
     axios.post("/urls.json", urlData).then((res) => setLink(res.data));

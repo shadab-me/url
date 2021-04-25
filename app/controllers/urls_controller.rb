@@ -14,10 +14,10 @@ class UrlsController < ApplicationController
   end
 
   def redirect
-    @link = Url.find_by(shor: params[:id])
+    @link = Url.find_by(short_id: params[:id])
     if @link
-      @link.increment!(:numberOfClick)
-      redirect_to @link[:longUrl]
+      @link.increment!(:number_of_click)
+      redirect_to @link[:long_url]
     else
       render status: :ok, json: { error: 'link is not available!' }
     end
@@ -28,6 +28,7 @@ class UrlsController < ApplicationController
   end
 
   def create
+    puts url_params
     @url = Url.new(url_params)
     respond_to do |format|
       if @url.save
@@ -56,6 +57,6 @@ class UrlsController < ApplicationController
   end
 
   def url_params
-    params.require(:url).permit(:longUrl, :shortUrl, :shortId, :numberOfClick, :pin)
+    params.require(:url).permit(:long_url, :short_url, :short_id, :number_of_click, :pin)
   end
 end

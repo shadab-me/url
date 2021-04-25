@@ -1,10 +1,10 @@
 class CreateUrls < ActiveRecord::Migration[6.1]
   def change
     create_table :urls do |t|
-      t.string :longUrl
-      t.string :shortUrl
-      t.string :shortId
-      t.numeric :numberOfClick
+      t.string :long_url
+      t.string :short_url
+      t.string :short_id
+      t.numeric :number_of_click
       t.boolean :pin
       t.timestamps
     end

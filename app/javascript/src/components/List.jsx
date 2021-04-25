@@ -47,18 +47,18 @@ function List() {
                   href={link.longUrl}
                   target="blank"
                 >
-                  {link.longUrl}
+                  {link.long_url}
                 </a>
                 <a
                   className="underline w-2/5 ml-5 text-gray-800 hover:text-gray-700 break-all"
-                  href={link.shortUrl}
+                  href={link.short_url}
                   target="_blank"
                   onClick={() => clickHandler()}
                 >
-                  {link.shortUrl}
+                  {link.short_url}
                 </a>
                 <p className="bg-gray-200 text-dark p-4">
-                  {link.numberOfClick ? parseInt(link.numberOfClick) : "0"}
+                  {link.number_of_click ? parseInt(link.number_of_click) : "0"}
                 </p>
               </li>
             );

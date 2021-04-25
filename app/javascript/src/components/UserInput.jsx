@@ -45,7 +45,7 @@ function UserInput() {
   };
 
   return (
-    <div className="container flex justify-center flex-col items-center outline-none focus:outline-none mt-20">
+    <div className="flex justify-center flex-col items-center outline-none focus:outline-none mt-20">
       <h1 className="text-5xl text-blue-400 semibold">Url Shorter</h1>
       <input
         type="link"

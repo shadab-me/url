@@ -2,6 +2,7 @@ import { func } from "prop-types";
 import React, { useState } from "react";
 import shortid from "shortid";
 import axios from "axios";
+import Toastr from "./common/Toastr";
 
 function UserInput() {
   const [url, setUrl] = useState("");
@@ -32,7 +33,7 @@ function UserInput() {
     if (valid) {
       sendRequest(url);
     } else {
-      alert("Not Valid");
+      Toastr.error("Invalid Url");
     }
   };
   const urlUpdate = (event) => {

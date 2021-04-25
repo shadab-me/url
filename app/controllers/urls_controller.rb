@@ -44,7 +44,7 @@ class UrlsController < ApplicationController
    def update
     respond_to do |format|
       if @url.update(url_params)
-         format.json { render :show, status: :ok, location: @url, notice: "Pined!" }
+         format.json { render :show, status: :ok, location: @url }
       else
          format.json { render json: @url.errors, status: :unprocessable_entity }
       end

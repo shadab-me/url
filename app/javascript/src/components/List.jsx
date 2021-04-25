@@ -3,12 +3,10 @@ import { number } from "prop-types";
 import React, { useEffect, useState } from "react";
 import { urlList } from "../apis/url";
 import shortid from "shortid";
-
 function List() {
   const [allLinks, setLinks] = useState([]);
   const [pin, setPin] = useState(false);
   const [count, setCount] = useState(false);
-
   useEffect(async () => {
     const { data } = await urlList();
     setLinks(data);

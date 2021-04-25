@@ -1,6 +1,6 @@
 require 'csv'    
 class UrlsController < ApplicationController
-  before_action :set_url, only: %i[ show edit update destroy ]
+  before_action :set_url, only: %i[ update]
 
    def index
     @urls = Url.all
@@ -22,9 +22,7 @@ class UrlsController < ApplicationController
   else
       render status: :ok, json: {error: "link is not available!"}
   end
-  end
-
-   
+  end   
 
    def new
     @url = Url.new
@@ -41,7 +39,7 @@ class UrlsController < ApplicationController
     end
   end
 
-   def update
+  def update
     respond_to do |format|
       if @url.update(url_params)
          format.json { render :show, status: :ok, location: @url }
@@ -52,14 +50,13 @@ class UrlsController < ApplicationController
   end
 
   private
- 
-  def set_url
+  
+def set_url
       @url = Url.find(params[:id])
-    puts @url
-    end
+puts @url
+end
 
-  def url_params
+def url_params
       params.require(:url).permit(:longUrl, :shortUrl, :shortId, :numberOfClick, :pin)
     end
-    
 end

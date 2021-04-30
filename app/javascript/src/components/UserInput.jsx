@@ -58,7 +58,7 @@ function UserInput() {
       {link ? (
         <h3 className="bg-gray-200 mt-5 p-5">
           <a className="p-4 text-blue-900 w-full" href={link.shortUrl}>
-            {link.shortUrl}
+            {link.short_url}
           </a>
         </h3>
       ) : null}

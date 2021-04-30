@@ -17,7 +17,9 @@ function List() {
       .patch(`/urls/${link.id}.json`, { pin: !link.pin })
       .then((res) => setPin(res));
   };
-  const clickHandler = (id) => {};
+  const clickHandler = (id) => {
+    axios.get(`/urls/${id}`).then((data) => setCount(data));
+  };
 
   return (
     <>

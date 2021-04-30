@@ -18,6 +18,6 @@ ActiveRecord::Schema.define(version: 2021_03_26_155750) do
     t.decimal "number_of_click"
     t.boolean "pin"
     t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "updated_at", preccision: 6, null: false
   end
 end

@@ -5,7 +5,7 @@ jobs:
     parallelism: 1
 
     docker:
-      - image: circleci/ruby:2.7.2-node-browsers
+      - image: circleci/ruby:3.0.0-node-browsers
 
     #application directory change it with your application directory name
     working_directory: ~/url
@@ -17,13 +17,15 @@ jobs:
     steps:
       - checkout
       - run: gem install bundler:2.2.3
+
+      #install sqlite dependency
+
       - run: sudo apt update && sudo apt install zlib1g-dev libsqlite3-dev
 
       # Bundle install
-       
 
-     - run: bundle config set --local path 'vendor/bundle'
-     - run: bundle install --path vendor/bundle
+      - run: bundle config set --local path 'vendor/bundle'
+      - run: bundle install --path vendor/bundle
 
       # Setup database
 

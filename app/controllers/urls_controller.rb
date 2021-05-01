@@ -1,6 +1,7 @@
 require 'csv'
 class UrlsController < ApplicationController
   before_action :set_url, only: %i[update]
+
   def index
     @urls = Url.all
     if @urls
@@ -50,7 +51,7 @@ class UrlsController < ApplicationController
   end
 
   private
-
+  
   def set_url
     @url = Url.find(params[:id])
     puts @url

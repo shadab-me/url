@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_26_155750) do
-  create_table "urls", force: :cascade do |t|
-    t.string "long_url"
-    t.string "short_url"
-    t.string "short_id"
-    t.decimal "number_of_click"
-    t.boolean "pin"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", preccision: 6, null: false
+ActiveRecord::Schema.define(version: 20_210_326_155_750) do
+  create_table 'urls', force: :cascade do |t|
+    t.string 'long_url'
+    t.string 'short_url'
+    t.string 'short_id'
+    t.decimal 'number_of_click'
+    t.boolean 'pin'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', preccision: 6, null: false
   end
 end
